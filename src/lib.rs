@@ -8,7 +8,10 @@ mod tests {
 
     #[test]
     fn test_list_diff() {
-        let result = list_diff();
-        assert_eq!(result, 0)
+        let list1 = vec![3, 4, 2, 1, 3, 3];
+        let list2 = vec![4, 3, 5, 3, 9, 3];
+        let result = list_diff(&list1, &list2);
+
+        assert_eq!(result, 11)
     }
 }
