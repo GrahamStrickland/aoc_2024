@@ -1,7 +1,7 @@
-mod day1;
+pub mod day1;
 
-pub use crate::day1::list_diff;
+pub use crate::day1::day1;
 
 fn main() {
-    // list_diff();
+    day1();
 }
