@@ -17,15 +17,13 @@ pub fn read_lists(content: &[u8]) -> io::Result<(Vec<i32>, Vec<i32>)> {
         .collect::<(Vec<i32>, Vec<i32>)>());
 }
 
-pub fn list_diff(list1: &Vec<i32>, list2: &Vec<i32>) -> i32 {
+pub fn list_diff(list1: &mut Vec<i32>, list2: &mut Vec<i32>) -> i32 {
     let mut diff = 0;
-    let mut new_list1 = list1.clone();
-    let mut new_list2 = list2.clone();
 
-    new_list1.sort();
-    new_list2.sort();
+    list1.sort();
+    list2.sort();
 
-    for (item1, item2) in new_list1.iter().zip(new_list2.iter()) {
+    for (item1, item2) in list1.iter().zip(list2.iter()) {
         diff += (item2 - item1).abs()
     }
 
@@ -36,8 +34,8 @@ pub fn day1() {
     let content = read_file("data/day1.tsv");
     let read_res = read_lists(content.as_bytes());
     match read_res {
-        Ok(res) => {
-            let list_res = list_diff(&res.0, &res.1);
+        Ok(mut res) => {
+            let list_res = list_diff(&mut res.0, &mut res.1);
             println!("Day 1: result = {list_res}");
         }
         Err(e) => panic!("{e}"),
